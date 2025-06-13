@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfólio | Iky Rodrigues</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --clr-bg: #ffffff;
+    --clr-text-primary: #111827;
+    --clr-text-secondary: #6b7280;
+    --clr-accent: #000000;
+    --clr-border: #e5e7eb;
+    --transition-speed: 0.3s;
+    --radius: 0.75rem;
+    --max-width: 1200px;
+    --spacing-xl: 4rem;
+    --spacing-lg: 2.5rem;
+    --spacing-md: 1.5rem;
+    --spacing-sm: 1rem;
+    --font-primary: 'Poppins', sans-serif;
+  }
+
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: var(--clr-bg);
+    color: var(--clr-text-primary);
+    line-height: 1.6;
+    font-size: 18px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: var(--clr-accent);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+  }
+  a:hover,
+  a:focus {
+    color: #444444;
+    outline: none;
+  }
+
+  main {
+    flex-grow: 1;
+    max-width: var(--max-width);
+    width: 90%;
+    margin: 0 auto;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+    .btn-custom {
+        background-color: #000000; /* Bootstrap primary color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-custom:hover {
+        background-color: #000000; /* Darker shade on hover */
+    }
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    border-bottom: 1px solid var(--clr-border);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--clr-accent);
+    user-select: text;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    user-select: text;
+  }
+
+  nav li a:hover,
+  nav li a:focus {
+    background-color: var(--clr-border);
+    outline: none;
+    cursor: pointer;
+  }
+
+  /* Profile Image */
+  .profile-img {
+    display: block;
+    margin: 0 auto var(--spacing-lg);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 0 var(--spacing-lg);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+    color: var(--clr-accent);
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--clr-text-secondary);
+    max-width: 440px;
+    margin: 0 auto var(--spacing-lg);
+  }
+
+  .hero .btn-primary {
+    background-color: var(--clr-accent);
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    text-decoration: none;
+    display: inline-block;
+    user-select: none;
+  }
+
+  .hero .btn-primary:hover,
+  .hero .btn-primary:focus {
+    background-color: #333333;
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* Sections */
+  section {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  section h2 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: var(--clr-accent);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: #f9fafb;
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  }
+  .feature-card:hover,
+  .feature-card:focus-within {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 25px rgba(0,0,0,0.1);
+    outline: none;
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    color: var(--clr-accent);
+    margin-bottom: var(--spacing-md);
+    user-select: none;
+  }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    user-select: text;
+  }
+
+  .feature-desc {
+    color: var(--clr-text-secondary);
+    font-size: 1rem;
+    line-height: 1.4;
+    user-select: text;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: var(--clr-text-secondary);
+    padding: var(--spacing-md);
+    font-size: 1rem;
+    user-select: none;
+    border-top: 1px solid var(--clr-border);
+    margin-top: var(--spacing-xl);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0" aria-label="Logo Iky Rodrigues">Iky Rodrigues</div>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#features" tabindex="0">Funcionalidades</a></li>
+        <li><a href="#about" tabindex="0">Sobre</a></li>
+        <li><a href="#contact" tabindex="0">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+  <!-- Instagram profile picture -->
+ <div style="text-align: center;">
+    <img src="foto.png" alt="Descrição da imagem"
+   class="profile-img" />
+
+  <section class="hero" role="banner">
+  
+    
+    <section class="hero" role="banner">
+      <h1>Olá, eu sou Iky Rodrigues</h1>
+      <p>Bem-vindo ao meu portfólio pessoal onde compartilho minhas paixões, habilidades e projetos.</p>
+
+    <section id="features" tabindex="-1" aria-labelledby="features-title">
+      <h2 id="features-title">Minhas Paixões</h2>
+      <div class="features-grid" role="list">
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Lutas">
+          <div class="feature-icon" aria-hidden="true">🥋</div>
+          <h3 class="feature-title">Lutas</h3>
+          <p class="feature-desc">Disciplina, foco e superação constante no universo das artes marciais.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Leitura">
+          <div class="feature-icon" aria-hidden="true">📚</div>
+          <h3 class="feature-title">Leitura</h3>
+          <p class="feature-desc">Ampliação contínua do conhecimento com livros diversos.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Música">
+          <div class="feature-icon" aria-hidden="true">🎵</div>
+          <h3 class="feature-title">Música</h3>
+          <p class="feature-desc">Fonte de inspiração e relaxamento no meu dia a dia.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Culinária Romântica">
+          <div class="feature-icon" aria-hidden="true">🍳</div>
+          <h3 class="feature-title">Culinária Romântica</h3>
+          <p class="feature-desc">Criar momentos especiais com sabor e carinho.</p>
+        </article>
+        <article class="feature-card" role="listitem" tabindex="0" aria-label="Amor pelos Animais">
+          <div class="feature-icon" aria-hidden="true">🐾</div>
+          <h3 class="feature-title">Amor pelos Animais</h3>
+          <p class="feature-desc">Respeito e cuidado pelos nossos amigos de quatro patas.</p>
+        </article> 
+      <article class="interest-card" tabindex="0" aria-label="Interesse Versatilidade">
+        <div class="interest-icon" aria-hidden="true">⭐</div>
+        <h3 class="interest-title">Versatilidade</h3>
+        <p class="interest-desc">Sou ótimo em diversas áreas, sempre aberto a novos desafios.</p>
+      </article>
+    </section>
+
+    <section id="about" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title">Sobre Mim</h2>
+      <p>Tenho 17 anos, 1,82m, sou versátil e apaixonado por aprender e evoluir em diversas áreas da vida.</p>
+
+    </section>
+         <div style="text-align: center;">
+    <h1>Programção</h1>
+
+      <p>minhas habilidades incluem:</p>
+        <div>
+            <p class="badge bg-secondary">HTML</p>
+            <p class="badge bg-secondary">CSS</p>
+            <p class="badge bg-secondary">JavaScript</p>
+            <p class="badge bg-secondary">Scratch</p>
+        </div>
+    </header>
+      <div style="text-align: center;">
+    <h1>Programas</h1>
+</div>
+        <div class="row">
+       <!-- Projeto 1 -->
+<div class="col-md-4">
+    <div class="card">
+        <div style="text-align: center;">
+    <img src="corrida de pinguim.png" alt="Descrição da imagem" style="margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title">Projeto Corrida de Pinguins</h5>
+            <p class="card-text">Este projeto é uma página web que apresenta uma lista dos meus livros favoritos, incluindo informações sobre os autores, datas de publicação e links para compra na Amazon. A página é estilizada com CSS para uma visualização agradável e usa fontes externas do Google Fonts.</p>
+           </div>
+            <div class="btn-custom">
+            <a href="https://editor.p5js.org/tekomonamotohonda/sketches/HUgodiw9M" class="btn btn-custom" target="_blank">Veja o projeto</a>
+
+        </div>
+    </div>
+</div>
+
+<!-- Projeto 2 -->
+<div class="col-md-4">
+    <div class="card">
+         <img src="projeto quente e frio.png" alt="Descrição da imagem" style="margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title">Decidindo o Futuro: Uma Jornada Interativa sobre a Inteligência Artificial</h5>
+            <p class="card-text">Este projeto é um jogo interativo baseado em navegador que explora o impacto e as implicações da Inteligência Artificial (IA) na sociedade, permitindo que as pessoas jogadoras façam escolhas que influenciam o desenrolar de uma narrativa sobre o futuro da IA.</p>
+            </div>
+            <div class="btn-custom">
+            <a href="https://editor.p5js.org/0000112470064xsp/sketches/2CxD0tuMo" class="btn btn-custom" target="_blank">Veja o projeto</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Projeto 3 -->
+<div class="col-md-4">
+    <div class="card">
+        <img src="projeto rosto de bolinha.png" alt="Descrição da imagem" style="margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title">Rosto Bolinha: Uma Aventura Interativa com Scratch</h5>
+            <p class="card-text">Este projeto Scratch cria uma experiência interativa educativa sobre jogos infantis, permitindo aos usuários explorar jogos novos para o desenvolvimento das habilidades cognitivas.</p>
+            </div>
+            <div class="btn-custom">
+            <a href="https://editor.p5js.org/0000112470064xsp/sketches/lmoYKbrZX" class="btn btn-custom" target="_blank">Veja o projeto</a>
+
+    
+    </div>
+<footer>
+  <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
