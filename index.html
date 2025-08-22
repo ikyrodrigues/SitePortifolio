@@ -20,6 +20,12 @@
     --spacing-md: 1.5rem;
     --spacing-sm: 1rem;
     --font-primary: 'Poppins', sans-serif;
+
+    /* Variáveis para Alto Contraste */
+    --alto-contraste-bg: #000000;
+    --alto-contraste-text: #FFFFFF;
+    --alto-contraste-accent: #FFFF00; /* Amarelo vibrante para destaque */
+    --alto-contraste-border: #FFFFFF;
   }
 
   /* Reset and base */
@@ -33,10 +39,17 @@
     background-color: var(--clr-bg);
     color: var(--clr-text-primary);
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 18px; /* Tamanho de fonte base para acessibilidade */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s, color 0.3s; /* Transição suave para alto contraste */
+  }
+
+  /* Estilo para reduzir animações */
+  body.reduce-motion * {
+    transition: none !important;
+    animation: none !important;
   }
 
   a {
@@ -85,6 +98,7 @@
     justify-content: space-between;
     user-select: none;
     box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
 
   .logo {
@@ -205,7 +219,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color 0.3s;
   }
   .feature-card:hover,
   .feature-card:focus-within {
@@ -244,10 +258,185 @@
     user-select: none;
     border-top: 1px solid var(--clr-border);
     margin-top: var(--spacing-xl);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+
+  /* Estilos para o Menu de Acessibilidade */
+  .menu-acessibilidade {
+    position: fixed;
+    top: 2rem;
+    right: 20px;
+    z-index: 1000;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .rotacao-botao {
+    transform: rotate(-90deg);
+    transform-origin: right center;
+    background-color: var(--clr-accent); /* Usando a cor de destaque do tema */
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 1.1rem; /* Tamanho fixo para o botão do menu */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rotacao-botao:hover {
+    background-color: #333333; /* Tom mais escuro da cor de destaque */
+  }
+
+  .opcoes-acessibilidade {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* Transição para a abertura/fechamento do menu */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+  }
+
+  .opcoes-acessibilidade.apresenta-lista {
+    max-height: 300px; /* Valor suficiente para mostrar todas as opções */
+    opacity: 1;
+  }
+
+  .opcoes-acessibilidade button {
+    background-color: var(--clr-accent); /* Usando a cor de destaque do tema */
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem; /* Tamanho fixo para os botões de opção */
+  }
+
+  .opcoes-acessibilidade button:hover {
+    background-color: #333333; /* Tom mais escuro da cor de destaque */
+  }
+
+  .icon {
+    margin-right: 8px;
+    font-size: 1.2em;
+  }
+
+  /* Modo Alto Contraste */
+  body.alto-contraste {
+    background-color: var(--alto-contraste-bg);
+    color: var(--alto-contraste-text);
+  }
+
+  body.alto-contraste header {
+    background-color: var(--alto-contraste-bg);
+    border-bottom-color: var(--alto-contraste-border);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+
+  body.alto-contraste .logo,
+  body.alto-contraste .hero h1,
+  body.alto-contraste section h2,
+  body.alto-contraste .feature-icon,
+  body.alto-contraste .feature-title {
+    color: var(--alto-contraste-accent);
+  }
+
+  body.alto-contraste a {
+    color: var(--alto-contraste-accent);
+  }
+
+  body.alto-contraste a:hover,
+  body.alto-contraste a:focus {
+    color: var(--alto-contraste-text);
+  }
+
+  body.alto-contraste .hero p,
+  body.alto-contraste .feature-desc,
+  body.alto-contraste footer {
+    color: var(--alto-contraste-text);
+  }
+
+  body.alto-contraste .feature-card {
+    background-color: #333333; /* Fundo escuro para cards em alto contraste */
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  }
+
+  body.alto-contraste .feature-card:hover,
+  body.alto-contraste .feature-card:focus-within {
+    transform: translateY(-5px); /* Manter a animação de hover */
+    box-shadow: 0 13px 25px rgba(255, 255, 255, 0.2);
+  }
+
+  body.alto-contraste .btn-custom,
+  body.alto-contraste .hero .btn-primary {
+    background-color: var(--alto-contraste-accent);
+    color: var(--alto-contraste-bg);
+  }
+
+  body.alto-contraste .btn-custom:hover,
+  body.alto-contraste .hero .btn-primary:hover {
+    background-color: #CCCC00; /* Tom mais escuro do amarelo */
+  }
+
+  body.alto-contraste .menu-acessibilidade {
+    background-color: var(--alto-contraste-bg);
+    border: 1px solid var(--alto-contraste-border);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+  }
+
+  body.alto-contraste .rotacao-botao,
+  body.alto-contraste .opcoes-acessibilidade button {
+    background-color: var(--alto-contraste-accent);
+    color: var(--alto-contraste-bg);
+  }
+
+  body.alto-contraste .rotacao-botao:hover,
+  body.alto-contraste .opcoes-acessibilidade button:hover {
+    background-color: #CCCC00;
+  }
+
+  body.alto-contraste footer {
+    border-top-color: var(--alto-contraste-border);
   }
 </style>
 </head>
 <body>
+  <!-- Menu de Acessibilidade -->
+  <div class="menu-acessibilidade">
+      <button class="rotacao-botao" onclick="toggleMenu()">
+          <span class="icon">⚙️</span> Acessibilidade
+      </button>
+      <div class="opcoes-acessibilidade">
+          <button onclick="aumentarFonte()">
+              <span class="icon">🔍</span> Aumentar Fonte
+          </button>
+          <button onclick="diminuirFonte()">
+              <span class="icon">🔍</span> Diminuir Fonte
+          </button>
+          <button onclick="alterarContraste()">
+              <span class="icon">🌙</span> Ativar Alto Contraste
+          </button>
+          <button onclick="toggleReduceMotion()">
+              <span class="icon">🚫</span> Reduzir Animações
+          </button>
+      </div>
+  </div>
+
   <header>
     <div class="logo" tabindex="0" aria-label="Logo Iky Rodrigues">Iky Rodrigues</div>
     <nav aria-label="Navegação principal">
@@ -255,8 +444,7 @@
         <li><a href="#features" tabindex="0">Funcionalidades</a></li>
         <li><a href="#about" tabindex="0">Sobre</a></li>
         <li><a href="#contact" tabindex="0">Contato</a></li>
-   
-            </div>
+      </ul>
     </nav>
   </header>
 
@@ -375,5 +563,72 @@
 <footer>
   <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
 </footer>
+
+<script>
+    let tamanhoFonte = 18; // Tamanho de fonte base do seu site, conforme definido no CSS
+
+    function aumentarFonte() {
+        tamanhoFonte += 2;
+        document.body.style.fontSize = tamanhoFonte + 'px';
+        localStorage.setItem('fontSize', tamanhoFonte);
+    }
+
+    function diminuirFonte() {
+        if (tamanhoFonte > 12) { // Limite mínimo para não ficar ilegível
+            tamanhoFonte -= 2;
+            document.body.style.fontSize = tamanhoFonte + 'px';
+            localStorage.setItem('fontSize', tamanhoFonte);
+        }
+    }
+
+    function alterarContraste() {
+        document.body.classList.toggle('alto-contraste');
+        const isHighContrast = document.body.classList.contains('alto-contraste');
+        localStorage.setItem('highContrast', isHighContrast);
+    }
+
+    function toggleReduceMotion() {
+        document.body.classList.toggle('reduce-motion');
+        const isReducedMotion = document.body.classList.contains('reduce-motion');
+        localStorage.setItem('reduceMotion', isReducedMotion);
+    }
+
+    function toggleMenu() {
+        const opcoes = document.querySelector('.opcoes-acessibilidade');
+        opcoes.classList.toggle('apresenta-lista');
+    }
+
+    // Carregar configurações salvas ao carregar a página
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedFontSize = localStorage.getItem('fontSize');
+        const savedHighContrast = localStorage.getItem('highContrast');
+        const savedReduceMotion = localStorage.getItem('reduceMotion');
+        
+        if (savedFontSize) {
+            tamanhoFonte = parseInt(savedFontSize);
+            document.body.style.fontSize = tamanhoFonte + 'px';
+        }
+        
+        if (savedHighContrast === 'true') {
+            document.body.classList.add('alto-contraste');
+        }
+
+        if (savedReduceMotion === 'true') {
+            document.body.classList.add('reduce-motion');
+        }
+    });
+
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(event) {
+        const menuContainer = document.querySelector('.menu-acessibilidade');
+        const opcoes = document.querySelector('.opcoes-acessibilidade');
+        
+        // Se o clique não foi dentro do menuContainer e as opções estão visíveis, esconda-as
+        // Verifica se o clique não foi no botão principal do menu e nem dentro das opções
+        if (!menuContainer.contains(event.target) && opcoes.classList.contains('apresenta-lista')) {
+            opcoes.classList.remove('apresenta-lista');
+        }
+    });
+</script>
 </body>
 </html>
