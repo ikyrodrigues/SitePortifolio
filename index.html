@@ -181,6 +181,9 @@
             border: 4px solid var(--accent);
             margin-bottom: 2rem;
             box-shadow: var(--shadow-lg);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero h1 {
@@ -309,8 +312,10 @@
 
         .project-image {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 250px;
+            object-fit: contain;
+            background-color: #2d2d2d;
+            padding: 20px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -347,6 +352,18 @@
         .project-btn:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
+        }
+
+        /* Fallback para imagens */
+        .image-fallback {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #2d2d2d, #3d3d3d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
         }
 
         /* Footer */
@@ -440,6 +457,10 @@
                 right: 1rem;
                 left: 1rem;
             }
+            
+            .project-image {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -488,7 +509,10 @@
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <img src="https://placehold.co/180x180" alt="Foto de perfil de Iky Rodrigues - jovem programador de 17 anos" class="profile-img">
+            <img src="foto.png" alt="Foto de perfil de Iky Rodrigues - jovem programador de 17 anos" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="image-fallback" style="display: none;">
+                <i class="fas fa-user-circle" style="font-size: 4rem;"></i>
+            </div>
             <h1>Iky Rodrigues</h1>
             <p>Desenvolvedor Front-end & Entusiasta de Tecnologia</p>
         </section>
@@ -557,7 +581,11 @@
             <h2 class="section-title">Meus Projetos</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="corrida de pinguim.png" alt="Projeto Corrida de Pinguins - jogo educativo com pinguins em corrida" class="project-image">
+                    <img src="corrida de pinguim.png" alt="Projeto Corrida de Pinguins - jogo educativo com pinguins em corrida" class="project-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="image-fallback" style="display: none;">
+                        <i class="fas fa-gamepad" style="font-size: 3rem;"></i>
+                        <span style="margin-left: 10px;">Corrida de Pinguins</span>
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Corrida de Pinguins</h3>
                         <p class="project-desc">Jogo interativo desenvolvido para ensinar conceitos básicos de programação de forma divertida.</p>
@@ -565,7 +593,11 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="projeto rosto de bolinha.png" alt="Projeto Jornada da IA - interface de decisões sobre inteligência artificial" class="project-image">
+                    <img src="projeto quente e frio.png" alt="Projeto Jornada da IA - interface de decisões sobre inteligência artificial" class="project-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="image-fallback" style="display: none;">
+                        <i class="fas fa-brain" style="font-size: 3rem;"></i>
+                        <span style="margin-left: 10px;">Jornada da IA</span>
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Jornada da IA</h3>
                         <p class="project-desc">Experiência interativa que explora o impacto da Inteligência Artificial na sociedade.</p>
@@ -573,7 +605,11 @@
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="projeto rosto de bolinha.png" alt="Projeto Rosto Bolinha - jogo infantil com rostos coloridos" class="project-image">
+                    <img src="projeto rosto de bolinha.png" alt="Projeto Rosto Bolinha - jogo infantil com rostos coloridos" class="project-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="image-fallback" style="display: none;">
+                        <i class="fas fa-smile" style="font-size: 3rem;"></i>
+                        <span style="margin-left: 10px;">Rosto Bolinha</span>
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Rosto Bolinha</h3>
                         <p class="project-desc">Jogo educativo desenvolvido no Scratch para crianças, focando no desenvolvimento cognitivo.</p>
@@ -586,7 +622,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
+        <p>© 2024 Iky Rodrigues. Todos os direitos reservados.</p>
         <p>Desenvolvido com paixão e dedicação</p>
     </footer>
 
@@ -660,7 +696,24 @@
                 document.body.classList.add('high-contrast');
                 isHighContrast = true;
             }
+
+            // Verificar se as imagens existem
+            checkImages();
         });
+
+        // Verificar se as imagens carregaram corretamente
+        function checkImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.complete || img.naturalHeight === 0) {
+                    img.style.display = 'none';
+                    const fallback = img.nextElementSibling;
+                    if (fallback && fallback.classList.contains('image-fallback')) {
+                        fallback.style.display = 'flex';
+                    }
+                }
+            });
+        }
 
         // Smooth scroll para links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
