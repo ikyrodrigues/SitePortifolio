@@ -1,631 +1,680 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Portfólio | Iky Rodrigues</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --clr-bg: #ffffff;
-    --clr-text-primary: #111827;
-    --clr-text-secondary: #6b7280;
-    --clr-accent: #000000;
-    --clr-border: #e5e7eb;
-    --transition-speed: 0.3s;
-    --radius: 0.75rem;
-    --max-width: 1200px;
-    --spacing-xl: 4rem;
-    --spacing-lg: 2.5rem;
-    --spacing-md: 1.5rem;
-    --spacing-sm: 1rem;
-    --font-primary: 'Poppins', sans-serif;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Iky Rodrigues</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --accent: #2563eb;
+            --accent-hover: #3b82f6;
+            --border: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+        }
 
-    /* Variáveis para Alto Contraste */
-    --alto-contraste-bg: #000000;
-    --alto-contraste-text: #FFFFFF;
-    --alto-contraste-accent: #FFFF00; /* Amarelo vibrante para destaque */
-    --alto-contraste-border: #FFFFFF;
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* Reset and base */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-dark);
+            min-height: 100vh;
+            transition: var(--transition);
+            padding-top: 80px;
+        }
 
-  body {
-    margin: 0;
-    font-family: var(--font-primary);
-    background-color: var(--clr-bg);
-    color: var(--clr-text-primary);
-    line-height: 1.6;
-    font-size: 18px; /* Tamanho de fonte base para acessibilidade */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s, color 0.3s; /* Transição suave para alto contraste */
-  }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
 
-  /* Estilo para reduzir animações (mantido caso queira reativar no futuro, mas não usado no menu) */
-  body.reduce-motion * {
-    transition: none !important;
-    animation: none !important;
-  }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
 
-  a {
-    color: var(--clr-accent);
-    text-decoration: none;
-    transition: color var(--transition-speed);
-  }
-  a:hover,
-  a:focus {
-    color: #444444;
-    outline: none;
-  }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-  main {
-    flex-grow: 1;
-    max-width: var(--max-width);
-    width: 90%;
-    margin: 0 auto;
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
-  }
-    .btn-custom {
-        background-color: #000000; /* Bootstrap primary color */
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+        }
 
-    .btn-custom:hover {
-        background-color: #000000; /* Darker shade on hover */
-    }
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #fff;
-    border-bottom: 1px solid var(--clr-border);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
-    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
+        .nav-links a:hover {
+            color: var(--accent);
+            background: rgba(37, 99, 235, 0.1);
+        }
 
-  .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--clr-accent);
-    user-select: text;
-  }
+        /* Botão Acessibilidade */
+        .accessibility-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: var(--spacing-md);
-    margin: 0;
-    padding: 0;
-  }
+        .accessibility-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
+        }
 
-  nav li a {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius);
-    transition: background-color var(--transition-speed), color var(--transition-speed);
-    user-select: text;
-  }
+        .accessibility-btn i {
+            font-size: 1.5rem;
+        }
 
-  nav li a:hover,
-  nav li a:focus {
-    background-color: var(--clr-border);
-    outline: none;
-    cursor: pointer;
-  }
+        /* Menu Acessibilidade */
+        .accessibility-menu {
+            position: fixed;
+            bottom: 8rem;
+            right: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            z-index: 998;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            pointer-events: none;
+        }
 
-  /* Profile Image */
-  .profile-img {
-    display: block;
-    margin: 0 auto var(--spacing-lg);
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+        .accessibility-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
 
-  /* Hero Section */
-  .hero {
-    text-align: center;
-    padding: 0 var(--spacing-lg);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+        .accessibility-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
 
-  .hero h1 {
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 700;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.1;
-    color: var(--clr-accent);
-  }
+        .accessibility-options button {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
 
-  .hero p {
-    font-size: 1.25rem;
-    color: var(--clr-text-secondary);
-    max-width: 440px;
-    margin: 0 auto var(--spacing-lg);
-  }
+        .accessibility-options button:hover {
+            background: var(--accent);
+            color: white;
+        }
 
-  .hero .btn-primary {
-    background-color: var(--clr-accent);
-    color: white;
-    font-weight: 700;
-    font-size: 1.25rem;
-    padding: 1rem 3rem;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-    text-decoration: none;
-    display: inline-block;
-    user-select: none;
-  }
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-  .hero .btn-primary:hover,
-  .hero .btn-primary:focus {
-    background-color: #333333;
-    outline: none;
-    transform: scale(1.05);
-  }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
 
-  /* Sections */
-  section {
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-lg);
-  }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
 
-  section h2 {
-    font-size: 2.75rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-lg);
-    color: var(--clr-accent);
-  }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
 
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
-    max-width: 960px;
-    margin: 0 auto;
-  }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
 
-  .feature-card {
-    background: #f9fafb;
-    border-radius: var(--radius);
-    padding: var(--spacing-md);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color 0.3s;
-  }
-  .feature-card:hover,
-  .feature-card:focus-within {
-    transform: translateY(-5px);
-    box-shadow: 0 13px 25px rgba(0,0,0,0.1);
-    outline: none;
-  }
+        /* Seções */
+        .section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
 
-  .feature-icon {
-    font-size: 3rem;
-    color: var(--clr-accent);
-    margin-bottom: var(--spacing-md);
-    user-select: none;
-  }
+        .section:last-child {
+            border-bottom: none;
+        }
 
-  .feature-title {
-    font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    user-select: text;
-  }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
 
-  .feature-desc {
-    color: var(--clr-text-secondary);
-    font-size: 1rem;
-    line-height: 1.4;
-    user-select: text;
-  }
+        /* Grid de Paixões */
+        .passions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
 
-  /* Footer */
-  footer {
-    text-align: center;
-    color: var(--clr-text-secondary);
-    padding: var(--spacing-md);
-    font-size: 1rem;
-    user-select: none;
-    border-top: 1px solid var(--clr-border);
-    margin-top: var(--spacing-xl);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
+        .passion-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
 
-  /* Botão de Acessibilidade Flutuante */
-  .accessibility-toggle-button {
-    position: fixed;
-    top: 2rem; /* Ajuste a posição conforme necessário */
-    right: 20px;
-    z-index: 1001; /* Acima do menu de acessibilidade */
-    background-color: var(--clr-accent);
-    color: white;
-    border: none;
-    border-radius: 50%; /* Botão redondo */
-    width: 50px; /* Tamanho do botão */
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem; /* Tamanho do ícone */
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.3s;
-  }
+        .passion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
 
-  .accessibility-toggle-button:hover {
-    background-color: #333333;
-    transform: scale(1.05);
-  }
+        .passion-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
 
-  /* Estilos para o Menu de Acessibilidade */
-  .menu-acessibilidade {
-    position: fixed;
-    top: calc(2rem + 60px); /* Abaixo do botão de toggle, 60px = altura do botão + margem */
-    right: 20px;
-    z-index: 1000;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s, transform 0.3s;
-    opacity: 0; /* Escondido por padrão */
-    transform: translateY(-10px); /* Levemente acima para animação de entrada */
-    pointer-events: none; /* Não interage quando escondido */
-  }
+        .passion-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
 
-  .menu-acessibilidade.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto; /* Interage quando visível */
-  }
+        .passion-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
 
-  .opcoes-acessibilidade {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
+        /* Habilidades */
+        .skills-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-  .opcoes-acessibilidade button {
-    background-color: var(--clr-accent); /* Usando a cor de destaque do tema */
-    color: white;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1rem; /* Tamanho fixo para os botões de opção */
-  }
+        .skills-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
 
-  .opcoes-acessibilidade button:hover {
-    background-color: #333333; /* Tom mais escuro da cor de destaque */
-  }
+        .skill-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
 
-  .icon {
-    margin-right: 8px;
-    font-size: 1.2em;
-  }
+        .skill-badge:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
 
-  /* Modo Alto Contraste */
-  body.alto-contraste {
-    background-color: var(--alto-contraste-bg);
-    color: var(--alto-contraste-text);
-  }
+        /* Projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
 
-  body.alto-contraste header {
-    background-color: var(--alto-contraste-bg);
-    border-bottom-color: var(--alto-contraste-border);
-    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
-  }
+        .project-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
 
-  body.alto-contraste .logo,
-  body.alto-contraste .hero h1,
-  body.alto-contraste section h2,
-  body.alto-contraste .feature-icon,
-  body.alto-contraste .feature-title {
-    color: var(--alto-contraste-accent);
-  }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
 
-  body.alto-contraste a {
-    color: var(--alto-contraste-accent);
-  }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
 
-  body.alto-contraste a:hover,
-  body.alto-contraste a:focus {
-    color: var(--alto-contraste-text);
-  }
+        .project-content {
+            padding: 1.5rem;
+        }
 
-  body.alto-contraste .hero p,
-  body.alto-contraste .feature-desc,
-  body.alto-contraste footer {
-    color: var(--alto-contraste-text);
-  }
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
 
-  body.alto-contraste .feature-card {
-    background-color: #333333; /* Fundo escuro para cards em alto contraste */
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-  }
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
 
-  body.alto-contraste .feature-card:hover,
-  body.alto-contraste .feature-card:focus-within {
-    transform: translateY(-5px); /* Manter a animação de hover */
-    box-shadow: 0 13px 25px rgba(255, 255, 255, 0.2);
-  }
+        .project-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+        }
 
-  body.alto-contraste .btn-custom,
-  body.alto-contraste .hero .btn-primary {
-    background-color: var(--alto-contraste-accent);
-    color: var(--alto-contraste-bg);
-  }
+        .project-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
 
-  body.alto-contraste .btn-custom:hover,
-  body.alto-contraste .hero .btn-primary:hover {
-    background-color: #CCCC00; /* Tom mais escuro do amarelo */
-  }
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
 
-  body.alto-contraste .menu-acessibilidade {
-    background-color: var(--alto-contraste-bg);
-    border: 1px solid var(--alto-contraste-border);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-  }
+        /* Modo Alto Contraste */
+        body.high-contrast {
+            background: #000000;
+            color: #ffffff;
+        }
 
-  body.alto-contraste .opcoes-acessibilidade button {
-    background-color: var(--alto-contraste-accent);
-    color: var(--alto-contraste-bg);
-  }
+        body.high-contrast header {
+            background: #000000;
+            border-bottom: 2px solid #ffffff;
+        }
 
-  body.alto-contraste .opcoes-acessibilidade button:hover {
-    background-color: #CCCC00;
-  }
+        body.high-contrast .logo,
+        body.high-contrast .nav-links a,
+        body.high-contrast .section-title,
+        body.high-contrast .passion-title,
+        body.high-contrast .project-title {
+            color: #ffff00 !important;
+        }
 
-  body.alto-contraste footer {
-    border-top-color: var(--alto-contraste-border);
-  }
+        body.high-contrast .passion-card,
+        body.high-contrast .project-card {
+            background: #000000;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
 
-  body.alto-contraste .accessibility-toggle-button {
-    background-color: var(--alto-contraste-accent);
-    color: var(--alto-contraste-bg);
-  }
-  body.alto-contraste .accessibility-toggle-button:hover {
-    background-color: #CCCC00;
-  }
-</style>
+        body.high-contrast .passion-desc,
+        body.high-contrast .project-desc,
+        body.high-contrast .hero p {
+            color: #ffffff !important;
+        }
+
+        body.high-contrast .accessibility-btn {
+            background: #ffff00;
+            color: #000000;
+        }
+
+        body.high-contrast .accessibility-menu {
+            background: #000000;
+            border: 2px solid #ffffff;
+        }
+
+        body.high-contrast .accessibility-options button {
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+        }
+
+        body.high-contrast .accessibility-options button:hover {
+            background: #ffff00;
+            color: #000000;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .passions-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .accessibility-menu {
+                bottom: 7rem;
+                right: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Botão de Acessibilidade Flutuante -->
-  <button class="accessibility-toggle-button" onclick="toggleAccessibilityMenu()" aria-label="Abrir menu de acessibilidade">
-      🧑‍🧒‍🧒
-  </button>
-
-  <!-- Menu de Acessibilidade -->
-  <div class="menu-acessibilidade" id="accessibilityMenu">
-      <div class="opcoes-acessibilidade">
-          <button onclick="aumentarFonte()">
-              <span class="icon">🔍</span> Aumentar Fonte
-          </button>
-          <button onclick="diminuirFonte()">
-              <span class="icon">🔍</span> Diminuir Fonte
-          </button>
-          <button onclick="alterarContraste()">
-              <span class="icon">🌙</span> Ativar Alto Contraste
-          </button>
-      </div>
-  </div>
-
-  <header>
-    <div class="logo" tabindex="0" aria-label="Logo Iky Rodrigues">Iky Rodrigues</div>
-    <nav aria-label="Navegação principal">
-      <ul>
-        <li><a href="#features" tabindex="0">Funcionalidades</a></li>
-        <li><a href="#about" tabindex="0">Sobre</a></li>
-        <li><a href="#contact" tabindex="0"></a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-  <!-- Instagram profile picture -->
- <div style="text-align: center;">
-    <img src="foto.png" alt="Descrição da imagem"
-   class="profile-img" />
-
-  <section class="hero" role="banner">
-  
-    
-    <section class="hero" role="banner">
-      <h1>Olá, eu sou Iky Rodrigues</h1>
-      <p>Bem-vindo ao meu portfólio pessoal onde compartilho minhas paixões, habilidades e projetos.</p>
-
-    <section id="features" tabindex="-1" aria-labelledby="features-title">
-      <h2 id="features-title">Minhas Paixões</h2>
-      <div class="features-grid" role="list">
-        <article class="feature-card" role="listitem" tabindex="0" aria-label="Lutas">
-          <div class="feature-icon" aria-hidden="true">🥋</div>
-          <h3 class="feature-title">Lutas</h3>
-          <p class="feature-desc">Disciplina, foco e superação constante no universo das artes marciais.</p>
-        </article>
-        <article class="feature-card" role="listitem" tabindex="0" aria-label="Leitura">
-          <div class="feature-icon" aria-hidden="true">📚</div>
-          <h3 class="feature-title">Leitura</h3>
-          <p class="feature-desc">Ampliação contínua do conhecimento com livros diversos.</p>
-        </article>
-        <article class="feature-card" role="listitem" tabindex="0" aria-label="Música">
-          <div class="feature-icon" aria-hidden="true">🎵</div>
-          <h3 class="feature-title">Música</h3>
-          <p class="feature-desc">Fonte de inspiração e relaxamento no meu dia a dia.</p>
-        </article>
-        <article class="feature-card" role="listitem" tabindex="0" aria-label="Culinária Romântica">
-          <div class="feature-icon" aria-hidden="true">🍳</div>
-          <h3 class="feature-title">Culinária Romântica</h3>
-          <p class="feature-desc">Criar momentos especiais com sabor e carinho.</p>
-        </article>
-        <article class="feature-card" role="listitem" tabindex="0" aria-label="Amor pelos Animais">
-          <div class="feature-icon" aria-hidden="true">🐾</div>
-          <h3 class="feature-title">Amor pelos Animais</h3>
-          <p class="feature-desc">Respeito e cuidado pelos nossos amigos de quatro patas.</p>
-        </article> 
-      <article class="interest-card" tabindex="0" aria-label="Interesse Versatilidade">
-        <div class="interest-icon" aria-hidden="true">⭐</div>
-        <h3 class="interest-title">Versatilidade</h3>
-        <p class="interest-desc">Sou ótimo em diversas áreas, sempre aberto a novos desafios.</p>
-      </article>
-    </section>
-
-    <section id="about" tabindex="-1" aria-labelledby="about-title">
-      <h2 id="about-title">Sobre Mim</h2>
-      <p>Tenho 17 anos, 1,82m, sou versátil e apaixonado por aprender e evoluir em diversas áreas da vida.</p>
-
-    </section>
-         <div style="text-align: center;">
-    <h1>Programção</h1>
-
-      <p>minhas habilidades incluem:</p>
-        <div>
-            <p class="badge bg-secondary">HTML</p>
-            <p class="badge bg-secondary">CSS</p>
-            <p class="badge bg-secondary">JavaScript</p>
-            <p class="badge bg-secondary">Scratch</p>
-        </div>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Iky Rodrigues</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#paixoes">Paixões</a></li>
+                <li><a href="#programacao">Programação</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+            </ul>
+        </nav>
     </header>
-      <div style="text-align: center;">
-    <h1>Programas</h1>
-</div>
-        <div class="row">
-       <!-- Projeto 1 -->
-<div class="col-md-4">
-    <div class="card">
-        <div style="text-align: center;">
-    <img src="corrida de pinguim.png" alt="Descrição da imagem" style="margin: auto;">
-        <div class="card-body">
-            <h5 class="card-title">Projeto Corrida de Pinguins</h5>
-            <p class="card-text">Este projeto é uma página web que apresenta uma lista dos meus livros favoritos, incluindo informações sobre os autores, datas de publicação e links para compra na Amazon. A página é estilizada com CSS para uma visualização agradável e usa fontes externas do Google Fonts.</p>
-           </div>
-            <div class="btn-custom">
-            <a href="https://editor.p5js.org/tekomonamotohonda/sketches/HUgodiw9M" class="btn btn-custom" target="_blank">Veja o projeto</a>
 
+    <!-- Botão Acessibilidade -->
+    <button class="accessibility-btn" onclick="toggleAccessibilityMenu()">
+        <i class="fas fa-universal-access"></i>
+    </button>
+
+    <!-- Menu Acessibilidade -->
+    <div class="accessibility-menu" id="accessibilityMenu">
+        <div class="accessibility-options">
+            <button onclick="increaseFontSize()">
+                <i class="fas fa-text-height"></i>
+                Aumentar Fonte
+            </button>
+            <button onclick="decreaseFontSize()">
+                <i class="fas fa-text-width"></i>
+                Diminuir Fonte
+            </button>
+            <button onclick="toggleHighContrast()">
+                <i class="fas fa-adjust"></i>
+                Alto Contraste
+            </button>
+            <button onclick="resetAccessibility()">
+                <i class="fas fa-redo"></i>
+                Redefinir
+            </button>
         </div>
     </div>
-</div>
 
-<!-- Projeto 2 -->
-<div class="col-md-4">
-    <div class="card">
-         <img src="projeto quente e frio.png" alt="Descrição da imagem" style="margin: auto;">
-        <div class="card-body">
-            <h5 class="card-title">Decidindo o Futuro: Uma Jornada Interativa sobre a Inteligência Artificial</h5>
-            <p class="card-text">Este projeto é um jogo interativo baseado em navegador que explora o impacto e as implicações da Inteligência Artificial (IA) na sociedade, permitindo que as pessoas jogadoras façam escolhas que influenciam o desenrolar de uma narrativa sobre o futuro da IA.</p>
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://placehold.co/180x180" alt="Foto de perfil de Iky Rodrigues - jovem programador de 17 anos" class="profile-img">
+            <h1>Iky Rodrigues</h1>
+            <p>Desenvolvedor Front-end & Entusiasta de Tecnologia</p>
+        </section>
+
+        <!-- Sobre -->
+        <section id="sobre" class="section">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="passion-card">
+                <p>Tenho 17 anos, 1,82m, sou uma pessoa versátil e apaixonada por aprender e evoluir em diversas áreas da vida. Minha jornada na programação começou cedo e desde então venho desenvolvendo projetos criativos e inovadores.</p>
             </div>
-            <div class="btn-custom">
-            <a href="https://editor.p5js.org/tekomonamotohonda/sketches/15VOQTVVt" class="btn btn-custom" target="_blank">Veja o projeto</a>
-        </div>
+        </section>
 
-    </div>
-</div>
-
-<!-- Projeto 3 -->
-<div class="col-md-4">
-    <div class="card">
-        <img src="projeto rosto de bolinha.png" alt="Descrição da imagem" style="margin: auto;">
-        <div class="card-body">
-            <h5 class="card-title">Rosto Bolinha: Uma Aventura Interativa com Scratch</h5>
-            <p class="card-text">Este projeto Scratch cria uma experiência interativa educativa sobre jogos infantis, permitindo aos usuários explorar jogos novos para o desenvolvimento das habilidades cognitivas.</p>
+        <!-- Paixões -->
+        <section id="paixoes" class="section">
+            <h2 class="section-title">Minhas Paixões</h2>
+            <div class="passions-grid">
+                <div class="passion-card">
+                    <div class="passion-icon">🥋</div>
+                    <h3 class="passion-title">Lutas</h3>
+                    <p class="passion-desc">Disciplina, foco e superação constante no universo das artes marciais.</p>
+                </div>
+                <div class="passion-card">
+                    <div class="passion-icon">📚</div>
+                    <h3 class="passion-title">Leitura</h3>
+                    <p class="passion-desc">Ampliação contínua do conhecimento com livros diversos.</p>
+                </div>
+                <div class="passion-card">
+                    <div class="passion-icon">🎵</div>
+                    <h3 class="passion-title">Música</h3>
+                    <p class="passion-desc">Fonte de inspiração e relaxamento no meu dia a dia.</p>
+                </div>
+                <div class="passion-card">
+                    <div class="passion-icon">🍳</div>
+                    <h3 class="passion-title">Culinária</h3>
+                    <p class="passion-desc">Criar momentos especiais com sabor e carinho.</p>
+                </div>
+                <div class="passion-card">
+                    <div class="passion-icon">🐾</div>
+                    <h3 class="passion-title">Animais</h3>
+                    <p class="passion-desc">Respeito e cuidado pelos nossos amigos de quatro patas.</p>
+                </div>
+                <div class="passion-card">
+                    <div class="passion-icon">⭐</div>
+                    <h3 class="passion-title">Versatilidade</h3>
+                    <p class="passion-desc">Sou ótimo em diversas áreas, sempre aberto a novos desafios.</p>
+                </div>
             </div>
-            <div class="btn-custom">
-            <a href="https://editor.p5js.org/tekomonamotohonda/sketches/KODRGplrf" class="btn btn-custom" target="_blank">Veja o projeto</a>
+        </section>
 
-    
+        <!-- Programação -->
+        <section id="programacao" class="section">
+            <h2 class="section-title">Programação</h2>
+            <div class="skills-container">
+                <p>Minhas habilidades incluem:</p>
+                <div class="skills-badges">
+                    <span class="skill-badge">HTML</span>
+                    <span class="skill-badge">CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Scratch</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section id="projetos" class="section">
+            <h2 class="section-title">Meus Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="corrida de pinguim.png" alt="Projeto Corrida de Pinguins - jogo educativo com pinguins em corrida" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Corrida de Pinguins</h3>
+                        <p class="project-desc">Jogo interativo desenvolvido para ensinar conceitos básicos de programação de forma divertida.</p>
+                        <a href="https://editor.p5js.org/tekomonamotohonda/sketches/HUgodiw9M" class="project-btn" target="_blank">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="projeto rosto de bolinha.png" alt="Projeto Jornada da IA - interface de decisões sobre inteligência artificial" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Jornada da IA</h3>
+                        <p class="project-desc">Experiência interativa que explora o impacto da Inteligência Artificial na sociedade.</p>
+                        <a href="https://editor.p5js.org/tekomonamotohonda/sketches/15VOQTVVt" class="project-btn" target="_blank">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="projeto rosto de bolinha.png" alt="Projeto Rosto Bolinha - jogo infantil com rostos coloridos" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Rosto Bolinha</h3>
+                        <p class="project-desc">Jogo educativo desenvolvido no Scratch para crianças, focando no desenvolvimento cognitivo.</p>
+                        <a href="https://editor.p5js.org/tekomonamotohonda/sketches/KODRGplrf" class="project-btn" target="_blank">Ver Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-<footer>
-  <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
-</footer>
 
-<script>
-    let tamanhoFonte = 18; // Tamanho de fonte base do seu site, conforme definido no CSS
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Iky Rodrigues. Todos os direitos reservados.</p>
+        <p>Desenvolvido com paixão e dedicação</p>
+    </footer>
 
-    function aumentarFonte() {
-        tamanhoFonte += 2;
-        document.body.style.fontSize = tamanhoFonte + 'px';
-        localStorage.setItem('fontSize', tamanhoFonte);
-    }
+    <script>
+        // Variáveis de acessibilidade
+        let currentFontSize = 16;
+        let isHighContrast = false;
 
-    function diminuirFonte() {
-        if (tamanhoFonte > 12) { // Limite mínimo para não ficar ilegível
-            tamanhoFonte -= 2;
-            document.body.style.fontSize = tamanhoFonte + 'px';
-            localStorage.setItem('fontSize', tamanhoFonte);
+        // Toggle do menu de acessibilidade
+        function toggleAccessibilityMenu() {
+            const menu = document.getElementById('accessibilityMenu');
+            menu.classList.toggle('show');
         }
-    }
 
-    function alterarContraste() {
-        document.body.classList.toggle('alto-contraste');
-        const isHighContrast = document.body.classList.contains('alto-contraste');
-        localStorage.setItem('highContrast', isHighContrast);
-    }
-
-    // Função para alternar a visibilidade do menu de acessibilidade
-    function toggleAccessibilityMenu() {
-        const menu = document.getElementById('accessibilityMenu');
-        menu.classList.toggle('show');
-    }
-
-    // Carregar configurações salvas ao carregar a página
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedFontSize = localStorage.getItem('fontSize');
-        const savedHighContrast = localStorage.getItem('highContrast');
-        
-        if (savedFontSize) {
-            tamanhoFonte = parseInt(savedFontSize);
-            document.body.style.fontSize = tamanhoFonte + 'px';
+        // Aumentar tamanho da fonte
+        function increaseFontSize() {
+            if (currentFontSize < 24) {
+                currentFontSize += 2;
+                document.body.style.fontSize = currentFontSize + 'px';
+                localStorage.setItem('fontSize', currentFontSize);
+            }
         }
-        
-        if (savedHighContrast === 'true') {
-            document.body.classList.add('alto-contraste');
-        }
-    });
 
-    // Fechar menu ao clicar fora
-    document.addEventListener('click', function(event) {
-        const toggleButton = document.querySelector('.accessibility-toggle-button');
-        const menu = document.getElementById('accessibilityMenu');
-        
-        // Se o clique não foi no botão de toggle e nem dentro do menu, e o menu está visível, esconda-o
-        if (!toggleButton.contains(event.target) && !menu.contains(event.target) && menu.classList.contains('show')) {
-            menu.classList.remove('show');
+        // Diminuir tamanho da fonte
+        function decreaseFontSize() {
+            if (currentFontSize > 12) {
+                currentFontSize -= 2;
+                document.body.style.fontSize = currentFontSize + 'px';
+                localStorage.setItem('fontSize', currentFontSize);
+            }
         }
-    });
-</script>
+
+        // Alternar alto contraste
+        function toggleHighContrast() {
+            isHighContrast = !isHighContrast;
+            document.body.classList.toggle('high-contrast', isHighContrast);
+            localStorage.setItem('highContrast', isHighContrast);
+        }
+
+        // Redefinir configurações
+        function resetAccessibility() {
+            currentFontSize = 16;
+            document.body.style.fontSize = currentFontSize + 'px';
+            document.body.classList.remove('high-contrast');
+            isHighContrast = false;
+            localStorage.removeItem('fontSize');
+            localStorage.removeItem('highContrast');
+        }
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('accessibilityMenu');
+            const btn = document.querySelector('.accessibility-btn');
+            
+            if (!menu.contains(event.target) && !btn.contains(event.target) && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Carregar configurações salvas
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedFontSize = localStorage.getItem('fontSize');
+            const savedHighContrast = localStorage.getItem('highContrast');
+            
+            if (savedFontSize) {
+                currentFontSize = parseInt(savedFontSize);
+                document.body.style.fontSize = currentFontSize + 'px';
+            }
+            
+            if (savedHighContrast === 'true') {
+                document.body.classList.add('high-contrast');
+                isHighContrast = true;
+            }
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
